@@ -143,7 +143,7 @@ NOTES:
  *   Rating: 1
  */
 int bitXor(int x, int y) {
-  return ~(~x & ~y) & ~(x & y);
+    return ~(~x & ~y) & ~(x & y);
 }
 /*
  * tmin - return minimum two's complement integer
@@ -152,8 +152,7 @@ int bitXor(int x, int y) {
  *   Rating: 1
  */
 int tmin(void) {
-        return 1 << 31;
-
+    return 1 << 31;
 }
 //2
 /*
@@ -165,12 +164,13 @@ int tmin(void) {
  */
 int isTmax(int x) {
 /*
-        I don't know why following code is wrong.
+    I don't know why following code is wrong.
     int WhyDifferent = x & (1 << 31);
     int DontKnowWhy = ((x + 1) & (1 << 31));
     return !WhyDifferent & !!DontKnowWhy;
-*/      int a = x + 1;
-        return !~(a ^ x) & !!a;
+*/     
+    int a = x + 1;
+    return !~(a ^ x) & !!a;
 }
 /*
  * allOddBits - return 1 if all odd-numbered bits in word set to 1
@@ -181,7 +181,7 @@ int isTmax(int x) {
  *   Rating: 2
  */
 int allOddBits(int x) {
-        const int c1 = 0xAA;
+    const int c1 = 0xAA;
     const int c2 = c1 << 8 | c1;
     const int c3 = c2 << 16 | c2;
     x = x & c3;
@@ -195,7 +195,7 @@ int allOddBits(int x) {
  *   Rating: 2
  */
 int negate(int x) {
-  return ~x + 1;
+    return ~x + 1;
 }
 //3
 /*
@@ -208,7 +208,7 @@ int negate(int x) {
  *   Rating: 3
  */
 int isAsciiDigit(int x) {
-        return !~(x ^ ~0x37 | 7) | !~(x ^ ~0x39 | 1);
+    return !~(x ^ ~0x37 | 7) | !~(x ^ ~0x39 | 1);
 }
 /*
  * conditional - same as x ? y : z
@@ -218,10 +218,10 @@ int isAsciiDigit(int x) {
  *   Rating: 3
  */
 int conditional(int x, int y, int z) {
-        int NegX = !x, X = !NegX;
-        X = (X << 31) >> 31;
-        NegX = ~X;
-        return X & y | NegX & z;
+    int NegX = !x, X = !NegX;
+    X = (X << 31) >> 31;
+    NegX = ~X;
+    return X & y | NegX & z;
 }
 /*
  * isLessOrEqual - if x <= y  then return 1, else return 0
@@ -231,9 +231,9 @@ int conditional(int x, int y, int z) {
  *   Rating: 3
  */
 int isLessOrEqual(int x, int y) {
-        int nx = ~x + 1;
-        int dif = (x ^ y) & (1 << 31);
-        return !dif & !(((y + nx) & (1 << 31)) >> 1) | !!(dif & x);
+    int nx = ~x + 1;
+    int dif = (x ^ y) & (1 << 31);
+    return !dif & !(((y + nx) & (1 << 31)) >> 1) | !!(dif & x);
 }
 //4
 /*
@@ -245,9 +245,9 @@ int isLessOrEqual(int x, int y) {
  *   Rating: 4
  */
 int logicalNeg(int x) {
-        int s1 = x + ~0;
-        int m = 1 << 31;
-        return ((s1 & m) & ((x ^ s1) & m)) >> 31 & 1;
+    int s1 = x + ~0;
+    int m = 1 << 31;
+    return ((s1 & m) & ((x ^ s1) & m)) >> 31 & 1;
 }
 /* howManyBits - return the minimum number of bits required to represent x in
  *             two's complement
@@ -262,7 +262,7 @@ int logicalNeg(int x) {
  *  Rating: 4
  */
 int howManyBits(int x) {
-        int IsNeg = (x & 1 << 31) >> 31;
+    int IsNeg = (x & 1 << 31) >> 31;
     int y = 0;
     int t1 = ~0; //-1
     int a = ~x + 1;
@@ -277,7 +277,6 @@ int howManyBits(int x) {
     y = y | (c << 1);
     c = !!(x >> (1 + y) & t1);
     y = y | (c << 0);
-
 
     c = !!(a >> 16 & t1);
     b = b | (c << 4);
@@ -379,7 +378,7 @@ int floatFloat2Int(unsigned uf) {
  *   Rating: 4
  */
 unsigned floatPower2(int x) {
-        unsigned y = x + 127;
+    unsigned y = x + 127;
     if(x < -127) {
         return 0u;
     }
